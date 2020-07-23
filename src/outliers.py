@@ -7,10 +7,17 @@ max_valid = 200
 # process the low values in the list
 stop = 0
 for index, value in enumerate(data):
-    if value >= min_valid:
-        stop = index
-        break
-
-print(stop) # for debugging
+        if value >= min_valid:
+                stop = index
+                break
 del data[:stop]
+print(data)
+
+start = 0
+for index in range(len(data) - 1, -1, -1):
+        if data[index] <= max_valid:
+                start = index + 1
+                break
+
+del data[start:]
 print(data)
