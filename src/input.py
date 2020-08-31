@@ -16,7 +16,7 @@
 # for line in lines[::-1]:
 #     print(line, end = "")
 
-with open("../../../Python/qractice/romeoandjuliet.txt", "r") as rj:
+with open(r"C:\Users\PC\Documents\Python\qractice\romeoandjuliet.txt", "r") as rj:
     lines = rj.read()
 
 for line in lines[::-1]:
