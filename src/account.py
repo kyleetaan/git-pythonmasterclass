@@ -1,6 +1,7 @@
 import datetime
 import pytz
 
+
 class Account(object):
     """ Simple account class with balance """
     
@@ -10,31 +11,32 @@ class Account(object):
         return pytz.utc.localize(utc_time)
 
     def __init__(self, name, balance):
-        self.name = name
-        self.balance = balance
-        self.transaction_list = []
-        print("Account created for " + self.name)
+        self._name = name
+        self._balance = balance
+        self._transaction_list = [(Account._current_time(), balance)]
+        print("Account created for " + self._name)
+        self.__show_balance()
 
     def deposit(self, amount):
         if amount > 0:
-            self.balance += amount
-            self.transaction_list.append((Account._current_time(), amount))
+            self._balance += amount
+            self._transaction_list.append((Account._current_time(), amount))
             self.__show_balance()
 
-    def witdraw(self, amount):
-        if 0 < amount <= self.balance:
-            self.balance -= amount
+    def withdraw(self, amount):
+        if 0 < amount <= self._balance:
+            self._balance -= amount
         else:
             print("The amount must be greater than zero and no more than your account balance.")
         self.__show_balance()
-        self.transaction_list.append((Account._current_time(), -amount))
+        self._transaction_list.append((Account._current_time(), -amount))
         
     def __show_balance(self):
-        print("Balance is {}".format(self.balance))
+        print("Balance is {}".format(self._balance))
 
 
     def show_transactions(self):
-        for date, amount in self.transaction_list:
+        for date, amount in self._transaction_list:
             if amount > 0:
                 tran_type = "deposited"
             else:
@@ -45,6 +47,10 @@ class Account(object):
 if __name__ == "__main__":
     macmac = Account("macmac", 100)
     macmac.deposit(500)
-    macmac.witdraw(200)
-    print(macmac.transaction_list)
+    macmac.withdraw(200)
     macmac.show_transactions()
+
+    steph = Account("Steph", 800)
+    steph.deposit(100)
+    steph.withdraw(200)
+    steph.show_transactions()
