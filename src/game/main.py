@@ -1,5 +1,5 @@
 from player import Player
-from enemy import Enemy, Troll
+from enemy import Enemy, Troll, Vampyre, VampyreKing
 
 kyle = Player("Kyle")
 print(kyle)
@@ -19,3 +19,16 @@ print(broda)
 broda.grunt()
 another_troll.grunt()
 random_monster.grunt()
+
+drac = Vampyre("Drac")
+print(drac)
+
+# while drac._alive:
+#     drac.take_damage(1)
+#     #print(drac)
+
+king = VampyreKing("Robert")
+print(king)
+while king._hit_points  >= 0 and king._lives > 0:
+    king.take_damage(200)
+    print(king)
